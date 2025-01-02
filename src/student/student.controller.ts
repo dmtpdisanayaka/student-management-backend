@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CreateStudentDto } from './dto/create-student.dto';
 import { StudentService } from './student.service';
 
@@ -9,5 +9,10 @@ export class StudentController {
     @Post('/')
     createStudent(@Body() student: CreateStudentDto) {
         return this.studentService.createStudent(student);
+    }
+
+    @Get('/')
+    getStudents() {
+        return this.studentService.getStudents();
     }
 }

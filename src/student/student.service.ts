@@ -15,5 +15,9 @@ export class StudentService {
     async createStudent(student: CreateStudentDto) {
         return await this.db.insert(schema.student).values(student).returning();
     }
+
+    async getStudents() {
+        return await this.db.select().from(schema.student);
+    }
   
 }
