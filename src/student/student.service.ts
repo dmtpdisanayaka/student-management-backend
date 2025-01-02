@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { eq, desc } from 'drizzle-orm';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { DrizzleAsyncProvider } from 'src/drizzle/drizzle.provider';
 import { CreateStudentDto } from './dto/create-student.dto';
@@ -17,7 +17,7 @@ export class StudentService {
     }
 
     async getStudents() {
-        return await this.db.select().from(schema.student);
+        return await this.db.select().from(schema.student).orderBy(desc(schema.student.id));
     }
 
     async updateStudent(id: number, student: CreateStudentDto) {
