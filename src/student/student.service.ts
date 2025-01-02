@@ -19,5 +19,9 @@ export class StudentService {
     async getStudents() {
         return await this.db.select().from(schema.student);
     }
+
+    async updateStudent(id: number, student: CreateStudentDto) {
+        return await this.db.update(schema.student).set(student).where(eq(schema.student.id, id)).returning();
+    }
   
 }
