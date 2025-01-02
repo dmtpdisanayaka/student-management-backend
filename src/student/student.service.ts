@@ -23,5 +23,8 @@ export class StudentService {
     async updateStudent(id: number, student: CreateStudentDto) {
         return await this.db.update(schema.student).set(student).where(eq(schema.student.id, id)).returning();
     }
-  
+
+    async deleteStudent(id: number) {
+        return await this.db.delete(schema.student).where(eq(schema.student.id, id)).returning();
+    }
 }
